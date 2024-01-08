@@ -1,6 +1,6 @@
 // components/Checkbox.js
 import React from 'react';
-import { CheckBox, Text } from 'react-native-elements';
+import { CheckBox } from '@rneui/themed';
 
 const Checkbox = ({ label, isChecked, onToggle }) => {
   return (
@@ -8,7 +8,11 @@ const Checkbox = ({ label, isChecked, onToggle }) => {
       title={label}
       checked={isChecked}
       onPress={onToggle}
-      containerStyle={{ backgroundColor: 'transparent', borderWidth: 0 }}
+      // Customize the following props based on your requirements
+      iconType="material-community"
+      checkedIcon="checkbox-marked"
+      uncheckedIcon="checkbox-blank-outline"
+      checkedColor="red"
     />
   );
 };

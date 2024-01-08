@@ -1,9 +1,9 @@
 // AddBillScreen.js
 import React, { useState } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Alert } from 'react-native';
 import Header from '../components/Header';
 import InputField from '../components/InputField';
-import Button from '../components/Button';
+import Button from '../components/Buttons/Button';
 import Checkbox from '../components/Checkbox';
 
 const AddBillScreen = ({ navigation }) => {
@@ -24,9 +24,23 @@ const AddBillScreen = ({ navigation }) => {
   };
 
   const handleAddBill = () => {
-    // Handle adding bill logic
     const selectedFriends = friendsList.filter(friend => friend.isSelected);
-    console.log("Selected Friends:", selectedFriends);
+
+    if (selectedFriends.length === 0) {
+      Alert.alert('No friends selected', 'Please select at least one friend to split the bill.');
+      return;
+    }
+
+    const totalSelectedFriends = selectedFriends.length;
+    const individualShare = parseFloat(billAmount) / totalSelectedFriends;
+
+    selectedFriends.forEach(friend => {
+      console.log(`${friend.name}: ${individualShare}`);
+    });
+
+    setBillTitle('');
+    setBillAmount('');
+    setFriendList(friendsList.map(friend => ({ ...friend, isSelected: false })));
   };
 
   return (
@@ -42,6 +56,7 @@ const AddBillScreen = ({ navigation }) => {
           placeholder="Enter Bill Amount"
           value={billAmount}
           onChangeText={setBillAmount}
+          keyboardType="numeric" // Use numeric keyboard for amount input
         />
 
         <Text>Select Friends to Split the Bill:</Text>
