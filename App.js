@@ -7,6 +7,7 @@ import AddBillScreen from './src/screens/AddBillScreen';
 import ViewBillsScreen from './src/screens/ViewBillsScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
 import AddFriendsScreen from './src/screens/AddFriendsScreen';
+import SplittedBalance from './src/screens/SplittedBalance';
 
 const Stack = createStackNavigator();
 
@@ -18,6 +19,7 @@ const App = () => {
         <Stack.Screen name="AddFriends" component={AddFriendsScreen} />
         <Stack.Screen name="AddBill" component={AddBillScreen} />
         <Stack.Screen name="ViewBills" component={ViewBillsScreen} />
+        <Stack.Screen name="SplittedBalance" component={SplittedBalance} />
         <Stack.Screen name="Settings" component={SettingsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
